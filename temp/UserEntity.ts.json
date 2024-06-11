@@ -1,0 +1,88 @@
+{
+  "data": {
+    "_id": 0,
+    "properties": {
+      "id": {
+        "name": "id",
+        "kind": "scalar",
+        "primary": true,
+        "type": "number",
+        "array": false,
+        "runtimeType": "number"
+      },
+      "fullName": {
+        "name": "fullName",
+        "kind": "scalar",
+        "length": 255,
+        "nullable": true,
+        "getter": false,
+        "setter": false,
+        "type": "string",
+        "array": false,
+        "runtimeType": "string",
+        "optional": true
+      },
+      "email": {
+        "name": "email",
+        "kind": "scalar",
+        "length": 254,
+        "getter": false,
+        "setter": false,
+        "type": "string",
+        "array": false,
+        "runtimeType": "string"
+      },
+      "password": {
+        "name": "password",
+        "kind": "scalar",
+        "length": 255,
+        "getter": false,
+        "setter": false,
+        "type": "string",
+        "array": false,
+        "runtimeType": "string"
+      },
+      "createdAt": {
+        "name": "createdAt",
+        "kind": "scalar",
+        "length": 6,
+        "getter": false,
+        "setter": false,
+        "type": "Date",
+        "array": false,
+        "runtimeType": "Date"
+      },
+      "updatedAt": {
+        "name": "updatedAt",
+        "kind": "scalar",
+        "length": 6,
+        "nullable": true,
+        "getter": false,
+        "setter": false,
+        "type": "Date",
+        "array": false,
+        "runtimeType": "Date",
+        "optional": true
+      }
+    },
+    "primaryKeys": ["id"],
+    "filters": {},
+    "hooks": {},
+    "indexes": [],
+    "uniques": [{ "name": "users_email_unique", "properties": "email" }],
+    "className": "UserEntity",
+    "path": "./app/entities/user.entity.ts",
+    "name": "UserEntity",
+    "abstract": false,
+    "internal": true,
+    "constructorParams": [],
+    "toJsonParams": [],
+    "useCache": true,
+    "compositePK": false,
+    "simplePK": true,
+    "collection": "user_entity"
+  },
+  "origin": "./app/entities/user.entity.ts",
+  "hash": "2b7471647b46987af435026f241c46af",
+  "version": "6.2.1"
+}

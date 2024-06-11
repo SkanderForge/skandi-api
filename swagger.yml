@@ -1,0 +1,197 @@
+openapi: "3.0.0"
+info:
+  title: "Foo"
+  version: "1.0.0"
+components:
+  responses:
+    Forbidden:
+      description: "Access token is missing or invalid"
+    Accepted:
+      description: "The request was accepted"
+    Created:
+      description: "The resource has been created"
+    NotFound:
+      description: "The resource has been created"
+    NotAcceptable:
+      description: "The resource has been created"
+  securitySchemes:
+    BearerAuth:
+      type: "http"
+      scheme: "bearer"
+  schemas:
+    EU4Country:
+      properties:
+        monthly_income:
+          title: monthly_income
+          type: number
+        total_development:
+          title: total_development
+          type: number
+        real_development:
+          title: real_development
+          type: number
+        idea_groups:
+          title: idea_groups
+        tag:
+          title: Country's TAG
+          type: string
+        map_color:
+          items:
+            title: map_color.[]
+            type: number
+          title: map_color
+          type: array
+        country_name:
+          title: country_name
+          type: string
+        human:
+          title: human
+          type: boolean
+        was_human:
+          title: was_human
+          type: boolean
+        primary_culture:
+          title: primary_culture
+          type: string
+        technology:
+          title: technology
+        great_power_score:
+          title: great_power_score
+          type: number
+        treasury:
+          title: treasury
+          type: number
+        army_tradition:
+          title: army_tradition
+          type: number
+        navy_tradition:
+          title: navy_tradition
+          type: number
+        manpower:
+          title: manpower
+          type: number
+        max_manpower:
+          title: max_manpower
+          type: number
+        losses:
+          title: losses
+        powers:
+          title: powers
+        produced_goods_value_detailed:
+          title: produced_goods_value_detailed
+        num_of_goods_produced_detailed:
+          title: num_of_goods_produced_detailed
+        traded_detailed:
+          title: traded_detailed
+        num_of_subunits:
+          title: num_of_subunits
+        flag:
+          title: flag
+          type: string
+      additionalProperties: false
+      title: EU4Country
+      type: object
+paths:
+  /utilities/parseClausewitz:
+    post:
+      summary: "Parse clausewitz"
+      description: ""
+      parameters: []
+      tags:
+        - "Utilities"
+      responses:
+        201:
+          description: "Created"
+          content:
+            application/json: {}
+      security: []
+      requestBody:
+        content:
+          application/json: {}
+  /admin/addDataset:
+    post:
+      summary: " (admin_controller::addDataset)"
+      description: ""
+      parameters: []
+      tags:
+        - "admin"
+      responses:
+        201:
+          description: "Created"
+          content:
+            application/json: {}
+      security: []
+      requestBody:
+        content:
+          application/json: {}
+  /saves:
+    post:
+      summary: " (saves_controller::uploadNewSave)"
+      description: ""
+      parameters: []
+      tags:
+        - "saves"
+      responses:
+        200:
+          description: "Successful upload"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EU4Country'
+      security: []
+      requestBody:
+        content:
+          application/json: {}
+  /saves/{key}/{field}:
+    get:
+      summary: " (saves_controller::getSavefileField)"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "key"
+          schema:
+            type: "string"
+          required: true
+        - in: "path"
+          name: "field"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "saves"
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json: {}
+      security: []
+  /saves/{key}/{datafile}:
+    get:
+      summary: "Get Save DataFile"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "key"
+          schema:
+            type: "string"
+          required: true
+        - in: "path"
+          name: "datafile"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "saves"
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json: {}
+      security: []
+tags:
+  - name: "Utilities"
+    description: "Various utility functions for parsing Clausewitz syntax and others."
+  - name: "admin"
+    description: "Admin functions"
+  - name: "saves"
+    description: "All methods related to uploading, reprocessing, fetching data from processed savefiles."

@@ -1,0 +1,541 @@
+{
+  "namespaces": ["public"],
+  "name": "public",
+  "tables": [
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "unsigned": true,
+          "autoincrement": true,
+          "primary": true,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "key": {
+          "name": "key",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "steam_id": {
+          "name": "steam_id",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "game_version": {
+          "name": "game_version",
+          "type": "varchar(10)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 10,
+          "mappedType": "string"
+        },
+        "archive_name": {
+          "name": "archive_name",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "last_updated": {
+          "name": "last_updated",
+          "type": "timestamptz(25)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 25,
+          "mappedType": "datetime"
+        },
+        "map_shapefile_url": {
+          "name": "map_shapefile_url",
+          "type": "varchar(30)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 30,
+          "mappedType": "string"
+        }
+      },
+      "name": "dataset",
+      "schema": "public",
+      "indexes": [
+        {
+          "columnNames": ["key"],
+          "composite": false,
+          "keyName": "dataset_key_unique",
+          "constraint": true,
+          "primary": false,
+          "unique": true
+        },
+        {
+          "columnNames": ["name"],
+          "composite": false,
+          "keyName": "dataset_name_unique",
+          "constraint": true,
+          "primary": false,
+          "unique": true
+        },
+        {
+          "keyName": "dataset_pkey",
+          "columnNames": ["id"],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {},
+      "nativeEnums": {
+        "games": {
+          "name": "games",
+          "schema": "public",
+          "items": ["eu4", "eu5", "vic3", "ck3", "hoi4"]
+        }
+      }
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "unsigned": true,
+          "autoincrement": true,
+          "primary": true,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "key": {
+          "name": "key",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "data": {
+          "name": "data",
+          "type": "jsonb",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "json"
+        },
+        "belongs_to_id": {
+          "name": "belongs_to_id",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        }
+      },
+      "name": "datafile",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "datafile_pkey",
+          "columnNames": ["id"],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "datafile_belongs_to_id_foreign": {
+          "constraintName": "datafile_belongs_to_id_foreign",
+          "columnNames": ["belongs_to_id"],
+          "localTableName": "public.datafile",
+          "referencedColumnNames": ["id"],
+          "referencedTableName": "public.dataset",
+          "updateRule": "cascade"
+        }
+      },
+      "nativeEnums": {
+        "games": {
+          "name": "games",
+          "schema": "public",
+          "items": ["eu4", "eu5", "vic3", "ck3", "hoi4"]
+        }
+      }
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "unsigned": true,
+          "autoincrement": true,
+          "primary": true,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "full_name": {
+          "name": "full_name",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "steam_id": {
+          "name": "steam_id",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "discord_id": {
+          "name": "discord_id",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "avatar_url": {
+          "name": "avatar_url",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamptz(6)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "datetime"
+        }
+      },
+      "name": "user",
+      "schema": "public",
+      "indexes": [
+        {
+          "columnNames": ["steam_id"],
+          "composite": false,
+          "keyName": "user_steam_id_unique",
+          "constraint": true,
+          "primary": false,
+          "unique": true
+        },
+        {
+          "columnNames": ["discord_id"],
+          "composite": false,
+          "keyName": "user_discord_id_unique",
+          "constraint": true,
+          "primary": false,
+          "unique": true
+        },
+        {
+          "keyName": "user_pkey",
+          "columnNames": ["id"],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {},
+      "nativeEnums": {
+        "games": {
+          "name": "games",
+          "schema": "public",
+          "items": ["eu4", "eu5", "vic3", "ck3", "hoi4"]
+        }
+      }
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "unsigned": true,
+          "autoincrement": true,
+          "primary": true,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "game": {
+          "name": "game",
+          "type": "games",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "nativeEnumName": "games",
+          "enumItems": ["eu4", "eu5", "vic3", "ck3", "hoi4"],
+          "mappedType": "enum"
+        },
+        "key": {
+          "name": "key",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "alias": {
+          "name": "alias",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "uploader_id": {
+          "name": "uploader_id",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "uploaded_at": {
+          "name": "uploaded_at",
+          "type": "timestamptz(25)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 25,
+          "mappedType": "datetime"
+        },
+        "storage_url": {
+          "name": "storage_url",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "stale": {
+          "name": "stale",
+          "type": "boolean",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "false",
+          "mappedType": "boolean"
+        },
+        "countries_data": {
+          "name": "countries_data",
+          "type": "jsonb",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "json"
+        },
+        "provinces_data": {
+          "name": "provinces_data",
+          "type": "jsonb",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "json"
+        },
+        "wars_data": {
+          "name": "wars_data",
+          "type": "jsonb",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "json"
+        },
+        "meta_data": {
+          "name": "meta_data",
+          "type": "jsonb",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "json"
+        },
+        "reprocessed_at": {
+          "name": "reprocessed_at",
+          "type": "timestamptz(25)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 25,
+          "mappedType": "datetime"
+        }
+      },
+      "name": "save",
+      "schema": "public",
+      "indexes": [
+        {
+          "columnNames": ["key"],
+          "composite": false,
+          "keyName": "save_key_unique",
+          "constraint": true,
+          "primary": false,
+          "unique": true
+        },
+        {
+          "columnNames": ["alias"],
+          "composite": false,
+          "keyName": "save_alias_unique",
+          "constraint": true,
+          "primary": false,
+          "unique": true
+        },
+        {
+          "keyName": "save_pkey",
+          "columnNames": ["id"],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "save_uploader_id_foreign": {
+          "constraintName": "save_uploader_id_foreign",
+          "columnNames": ["uploader_id"],
+          "localTableName": "public.save",
+          "referencedColumnNames": ["id"],
+          "referencedTableName": "public.user",
+          "updateRule": "cascade"
+        }
+      },
+      "nativeEnums": {
+        "games": {
+          "name": "games",
+          "schema": "public",
+          "items": ["eu4", "eu5", "vic3", "ck3", "hoi4"]
+        }
+      }
+    },
+    {
+      "columns": {
+        "save_id": {
+          "name": "save_id",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "dataset_id": {
+          "name": "dataset_id",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        }
+      },
+      "name": "save_linked_datasets",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "save_linked_datasets_pkey",
+          "columnNames": ["save_id", "dataset_id"],
+          "composite": true,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "save_linked_datasets_save_id_foreign": {
+          "constraintName": "save_linked_datasets_save_id_foreign",
+          "columnNames": ["save_id"],
+          "localTableName": "public.save_linked_datasets",
+          "referencedColumnNames": ["id"],
+          "referencedTableName": "public.save",
+          "deleteRule": "cascade",
+          "updateRule": "cascade"
+        },
+        "save_linked_datasets_dataset_id_foreign": {
+          "constraintName": "save_linked_datasets_dataset_id_foreign",
+          "columnNames": ["dataset_id"],
+          "localTableName": "public.save_linked_datasets",
+          "referencedColumnNames": ["id"],
+          "referencedTableName": "public.dataset",
+          "deleteRule": "cascade",
+          "updateRule": "cascade"
+        }
+      },
+      "nativeEnums": {
+        "games": {
+          "name": "games",
+          "schema": "public",
+          "items": ["eu4", "eu5", "vic3", "ck3", "hoi4"]
+        }
+      }
+    }
+  ],
+  "nativeEnums": {
+    "games": {
+      "name": "games",
+      "schema": "public",
+      "items": ["eu4", "eu5", "vic3", "ck3", "hoi4"]
+    }
+  }
+}

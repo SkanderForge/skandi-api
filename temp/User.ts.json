@@ -1,0 +1,88 @@
+{
+  "data": {
+    "_id": 4000,
+    "properties": {
+      "id": {
+        "name": "id",
+        "kind": "scalar",
+        "primary": true,
+        "type": "number",
+        "array": false,
+        "runtimeType": "number"
+      },
+      "fullName": {
+        "name": "fullName",
+        "kind": "scalar",
+        "length": 255,
+        "nullable": true,
+        "getter": false,
+        "setter": false,
+        "type": "string",
+        "array": false,
+        "runtimeType": "string",
+        "optional": true
+      },
+      "steamId": {
+        "name": "steamId",
+        "kind": "scalar",
+        "length": 255,
+        "getter": false,
+        "setter": false,
+        "type": "string",
+        "array": false,
+        "runtimeType": "string"
+      },
+      "discordId": {
+        "name": "discordId",
+        "kind": "scalar",
+        "length": 255,
+        "getter": false,
+        "setter": false,
+        "type": "string",
+        "array": false,
+        "runtimeType": "string",
+        "optional": true
+      },
+      "avatarUrl": {
+        "name": "avatarUrl",
+        "kind": "scalar",
+        "length": 255,
+        "getter": false,
+        "setter": false,
+        "type": "string",
+        "array": false,
+        "runtimeType": "string",
+        "optional": true
+      },
+      "createdAt": {
+        "name": "createdAt",
+        "kind": "scalar",
+        "length": 6,
+        "getter": false,
+        "setter": false,
+        "type": "Date",
+        "array": false,
+        "runtimeType": "Date"
+      }
+    },
+    "primaryKeys": ["id"],
+    "filters": {},
+    "hooks": {},
+    "indexes": [],
+    "uniques": [{ "properties": "steamId" }, { "properties": "discordId" }],
+    "className": "User",
+    "path": "./app/entities/user.entity.ts",
+    "name": "User",
+    "abstract": false,
+    "internal": true,
+    "constructorParams": [],
+    "toJsonParams": [],
+    "useCache": true,
+    "compositePK": false,
+    "simplePK": true,
+    "collection": "user"
+  },
+  "origin": "./app/entities/user.entity.ts",
+  "hash": "729a7ec8d7e6f3443d930bf5b1f143c5",
+  "version": "6.2.2"
+}
